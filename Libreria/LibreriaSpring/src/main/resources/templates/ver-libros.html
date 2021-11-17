@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Seccion Libros</title>
+</head>
+<body>
+
+    <header class="header-libro-ver">
+
+      <div class=" contenedor contenido-header">
+
+        <div class="barra">
+
+          <a href="/">
+            <img src="/img/logo.png" alt="Logo Libreria" style="width: 10rem;">
+          </a>
+          
+          <nav class="navegacion">
+            <a th:href="@{/libro/menu}">Libros</a>
+            <a href="/autor/menu">Autores</a>
+            <a href="/editorial/menu">Editoriales</a>
+          </nav>
+
+        </div>
+        <h1>Ver Libros</h1>
+
+      </div>
+
+    </header>
+
+    <main>
+      <div class="contenedor seccion-b-libros">
+       
+
+          <table class="tabla">
+              <thead class="tabla-head">
+                 <tr>
+                    <td>ISBN</td>
+                    <td>Titulo</td>
+                    <td>Año</td>
+                    <td>Ejemplares</td>
+                    <td>Autor</td>
+                    <td>Editorial</td>
+                    <td>Foto</td>
+                    <td>Estado</td>
+                    <td>Opciones</td>
+                 </tr>
+              </thead>
+              <tbody th:each="libro : ${libros}">
+                <tr>
+                    <td th:text="${libro.isbn}"></td>
+                    <td th:text="${libro.titulo}"></td>
+                    <td th:text="${libro.ano}"></td>
+                    <td th:text="${libro.ejemplares}"></td>
+                    <td th:text="${libro.autor.getNombre}"></td>
+                    <td th:text="${libro.editorial.getNombre}"></td>
+                    <td th:text="${libro.foto}"></td>
+                    <td>
+                      <i th:if="${libro.alta}" class="fas fa-check-circle" style="color: rgb(2, 202, 2);"></i>
+                      <i th:unless="${libro.alta}" class="fas fa-times-circle" style="color: red;"></i>
+                    </td>                     
+                    <td>
+                      <a ><i class="fas fa-arrow-up"></i></a>
+                      <a ><i class="fas fa-ban"></i></a>
+                      <a th:href="${/libro/menu/lista-libro/modificar/__${libro.isbn}__}"><i class="far fa-edit"></i></a>
+                    </td>
+                </tr>               
+              </tbody>
+
+
+          </table>     
+          
+          <a href="/libro/menu" class="test20 volver">VOLVER </a>
+      </div>
+      
+    </main>
+  </body>
+</html>

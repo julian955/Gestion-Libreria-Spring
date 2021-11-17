@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Seccion Libros</title>
+  </head>
+  <body>
+    <header class="header-libro-add">
+      <div class="contenedor contenido-header">
+        <div class="barra">
+
+          <a href="/">
+            <img src="/img/logo.png" alt="Logo Libreria" style="width: 10rem;">
+          </a>
+          
+          <nav class="navegacion">
+            <a th:href="@{/libro/menu}">Libros</a>
+            <a href="/autor/menu">Autores</a>
+            <a href="/editorial/menu">Editoriales</a>
+          </nav>
+
+        </div>
+
+        <h1>Modificar un Libro</h1>
+      </div>
+    </header>
+
+    <main>
+      <div class="contenedor seccion1">
+
+       <div th:if="${exito}!=null" class="exito">
+
+          <div class="check">
+            <i class="fas fa-check color-x"></i>
+          </div>
+          <div class="cuerpo-exito">            
+             <h5>El libro se guardo correctamente!!</h5>
+          </div>          
+
+        </div>
+        <div th:if="${error}!=null" class="error">
+          <div class="err-icon">
+            <i class="fas fa-times color-x"></i>
+          </div>
+          <div class="err-cuerpo">
+            <h5>Error. Faltaron Datos!</h5>
+          </div>
+
+        </div>
+        
+        <form th:action="@{/libro/menu/lista-libro/modificar/__${isbn}__}" class="formulario" method="POST">
+          <input hidden th:value = "${isbn}" name = "id">
+          <div class="test1">
+            <label class="label" for="">ISBN</label>
+
+            <input th:value = "${libro.isbn}" class="input" type="number" readonly ="readonly" value="135" name="isbn" />
+          </div>
+
+          <div class="test1">
+            <label class="label" for="">Titulo</label>
+
+            <input th:value = "${libro.titulo}" class="input" type="text" name="titulo" />
+          </div>
+
+          <div class="test1">
+            <label class="label" for="">Año</label>
+
+            <input th:value = "${libro.ano}" class="input" type="number" name="ano" />
+          </div>
+          <div class="test1">
+            <label class="label" for="">Ejemplares</label>
+
+            <input th:value = "${libro.ejemplares}" class="input" type="number" name="ejemplares" />
+          </div>
+          <div class="test1">
+            <label class="label" for="">Autor</label>
+
+            <input th:value = "${libro.autor.getNombre}" class="input" type="text" name="autor" />
+          </div>
+
+          <div class="test1">
+            <label class="label" for="">Editorial</label>
+
+            <input th:value = "${libro.editorial.getNombre}" class="input" type="text" name="editorial"/>
+          </div>
+
+          <div class="test1">
+            <label class="label" for="">Foto</label>
+            <input th:value = "${libro.foto}"  class="input" type="file" name="foto" id="">
+          </div>
+
+          <div class="botones-form test1">
+            <button class="boton" type="submit">AGREGAR</button>
+           <a href="/libro/menu" class="boton volver">VOLVER </a> 
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

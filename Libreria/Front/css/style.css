@@ -1,0 +1,576 @@
+
+html {  /* codigo de paul para arreglar bien las medidas. */
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+html{
+   /* font-size: 16px;  este es el default de todos los navegadores*/ 
+   font-size: 62.5%; /* Reset para REMS - 62.5% = 10px de 16px,// este porcentaje hace que 1 rem sea igual a 10 px**/
+   /* DATO: La palabra rem hay que ponerla pegada al numero sino no funcionara ej : 20rem **/
+}
+
+
+body{
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    font-family: 'Lato', sans-serif;
+    font-size: 1.6rem; /* esto es igual a 16px que seria el default **/
+    line-height: 2;
+}
+
+img{
+    max-width: 100%; 
+}
+
+.contenedor{
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+
+.header{
+    padding: 1rem 0 3rem 0;
+    background-image: url(/img/libro-edit.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 80vh;
+    min-height: 10rem;
+    opacity: 0.7;
+}
+
+.contenido-header{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.contenido-header p{
+    color: rgb(8, 148, 153);
+    font-size: 1rem;
+    
+}
+
+.contenido-header h1{
+    color: rgb(8, 148, 153);
+    padding-bottom: 2rem;
+    max-width: 60rem;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 3rem;
+    font-family:fantasy;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
+}
+
+.seccion{
+    display: flex;
+    height: 50vh;
+    justify-content: space-between;
+    font-size: 2rem;
+    
+    
+}
+
+
+.libros{
+    background:url(/img/libros1.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    min-height: 40rem;
+    width: 25rem;
+    
+}
+
+.autores{
+    background:url(/img/autores.jpeg);
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    min-height: 40rem;
+    width: 25rem;
+}
+
+.editoriales{
+    background:url(/img/editoriales.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    min-height: 40rem;
+    width: 25rem;
+}
+
+.barra{
+   display: flex; 
+   justify-content: space-between;
+   align-items: center; 
+   background-color: black;
+   opacity: 0.5;
+}
+
+.navegacion a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.8rem;
+    margin-right: 2rem;
+}
+
+.navegacion a:last-of-type{
+    margin-right: 0;
+}
+
+.navegacion a:hover{
+    font-size: 2.8rem;
+    color: aquamarine;
+}
+
+.seccion a{
+    text-decoration: none;    
+    background-color: red;
+    background-size: contain;
+    text-decoration: none;
+    font-weight: 700;
+    color:#ffffff;
+    font-size: 2.5rem;
+    padding: 1rem 3rem;   
+    display: inline-block;
+    margin-top: 3rem;
+    text-align: center;
+    height: auto;
+    width: 25rem;
+}
+
+                               /** SECCION LIBROS */
+
+.header-libro{
+    padding: 1rem 0 3rem 0;
+    background-image: url(/img/libros1.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 80vh;
+    min-height: 10rem;
+    opacity: 0.7;
+}
+
+.header-libro h1{
+    color: red;
+}
+
+.seccion-libro{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.agregar-libro{
+    background:url(/img/libros.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    min-height: 40rem;
+    width: 25rem;
+    
+}
+
+.seccion-libro a{
+      
+    background-color: red;
+    text-decoration: none;
+    font-weight: 700;
+    color:#ffffff;
+    font-size: 2rem;
+    padding: 1rem 3rem;   
+    display: inline-block;
+    margin-top: 3rem;
+    text-align: center;
+    border: 5rem;
+    width: 25rem;
+}
+
+.ver-libros{
+    background:url(/img/ver-libros.webp);
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    min-height: 40rem;
+    width: 25rem;
+    
+}
+
+                                   /** SECCION AGREGAR LIBRO.*/
+
+.header-libro-add{
+    padding: 1rem 0 3rem 0;
+    background-image: url(/img/libros.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 50vh;
+    min-height: 10rem;
+    opacity: 0.7;
+}
+
+.header-libro-add h1{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    border: auto;
+    padding-top: 5rem;
+    justify-content: center;
+    height: auto;
+}
+
+
+
+.elemento{
+    margin: 2rem;
+    padding: 2rem;
+    width: 5rem;
+}
+
+.seccion1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 120rem;
+    margin: 0 auto;
+    height: 150vh;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.test1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-sizing: 10rem;
+    
+}
+
+
+.input{
+    width: 20rem;
+    padding: auto; 
+    margin: 1rem;
+    height: auto;   
+    font-size: 2rem;
+    text-align: center;
+}
+
+.label{
+    padding: 1rem;
+    margin: 1rem; 
+    text-align: left;
+    width: 15rem;
+    font-size: 2.2rem;
+}
+
+.botones-form{
+  margin: 4rem auto; 
+  
+}
+
+.volver{
+    display: flex;
+    border: 1px solid black ;
+    text-decoration: none;
+    color: black;    
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.boton{
+    background-color: transparent;
+    border-radius: 6px;
+    height: 7rem;
+    width: 10rem;   
+    margin-left: 4rem;
+    font-weight: 500;
+    font-size: 1rem;   
+    
+}
+
+
+.boton:hover{
+    background-color: aqua;
+    font-size: 1.2rem;
+}
+
+.exito{
+    display: flex;  
+    flex-direction: row;
+    background-color: rgb(1, 151, 34);
+    padding-right: 2rem;    
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    height: auto;
+    margin: 2rem 1rem 2rem 0;
+    width: 80rem;
+}
+
+.cuerpo-exito{
+    text-align: center;
+    height: auto;
+    margin: auto;
+    font-size: 3rem;
+    color: #ffffff;
+}
+.check{
+    width: 20rem;
+    text-align: center;
+    font-size: 5rem;
+}
+
+h5{
+    height: auto;
+    margin: auto; 
+}
+
+.error{
+    display: flex;  
+    flex-direction: row;
+    background-color: rgb(163, 21, 2);    
+    padding-right: 2rem;    
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    height: auto;
+    margin: 2rem 1rem 2rem 0;
+    width: 80rem;
+}
+
+.err-cuerpo{
+    text-align: center;
+    height: auto;
+    margin: auto;
+    font-size: 3rem;
+    color: #ffffff;
+}
+.err-icon{
+    width: 20rem;
+    text-align: center;
+    font-size: 5rem;    
+}
+.color-x{
+    color: #ffffff;
+}
+
+                             /** SECCION VER LIBROS.*/
+
+
+.header-libro-ver{
+    padding: 1rem 0 3rem 0;    
+    background-image: url(/img/ver-libros.webp);
+    background-position: center center;
+    background-size: cover;
+    height: 70vh;
+    min-height: 10rem;
+    opacity: 0.7;
+}
+
+.seccion-b-libros{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabla{
+    background-color: bisque;    
+    height: 50vh;
+    margin: 5rem auto 5rem auto;   
+    padding: 1rem;
+    border: 1rem;
+    border-collapse: collapse;
+}
+
+td{
+    padding-right: 2rem;
+    font-size: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    border-bottom: 0.1rem solid gray;    
+}
+
+.tabla-head{
+  border-bottom: 0.2rem solid black;
+  border-top: 0.2rem solid black; 
+}
+
+.test20{
+  text-align: center;
+  text-decoration: none;  
+  margin-left: auto;
+  margin-right: auto;
+  background-color: transparent;
+  border-radius: 6px;
+  width: 10rem;
+  height: 7rem;   
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.test20:hover{
+    background-color: aqua;
+    font-size: 1.2rem;
+}
+
+i{
+    padding-left: 1rem;
+    color: black;
+}
+
+/*i:hover{
+    font-size: 3rem;
+}*/
+
+
+
+                                         /** SECCION AUTORES.*/
+
+
+
+.header-autor{
+    padding: 1rem 0 3rem 0;    
+    background-image: url(/img/autores.jpeg);
+    background-position: center center;
+    background-size: cover;
+    height: 70vh;
+    min-height: 10rem;
+    opacity: 0.7;
+}
+
+.agregar-autor{
+    background:url(/img/agregar-autor.webp);
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    min-height: 40rem;
+    width: 25rem;
+    
+}
+
+.ver-autores{
+    background:url(/img/ver-autores.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    min-height: 40rem;
+    width: 25rem;
+    
+}
+
+
+                             /** SECCION VER AUTORES.*/
+
+
+.header-ver-autores{
+    padding: 1rem 0 3rem 0;    
+    background-image: url(/img/ver-autores1.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 70vh;
+    min-height: 10rem;
+    opacity: 0.7;
+}
+
+                         /** SECCION AGREGAR AUTORES.*/
+
+
+.header-autores-add{
+    padding: 1rem 0 3rem 0;    
+    background-image: url(/img/agregar-autor.webp);
+    background-position: center center;
+    background-size: cover;
+    height: 70vh;
+    min-height: 10rem;
+    opacity: 0.7;
+}     
+.seccion2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 120rem;
+    margin: 0 auto;
+    height: 80vh;
+    font-size: 2rem;
+    text-align: center;
+}                  
+
+
+                         /** SECCION EDITORIAL.*/
+
+
+.header-editorial{
+    padding: 1rem 0 3rem 0;    
+    background-image: url(/img/editoriales.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 70vh;
+    min-height: 10rem;
+    opacity: 0.7;
+}
+
+
+
+.agregar-editorial{
+    background:url(/img/agregar-editorial1.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    min-height: 40rem;
+    width: 25rem;
+}
+
+
+
+.ver-editoriales{
+    background:url(/img/ver-editoriales.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    min-height: 40rem;
+    width: 25rem;
+}
+
+
+                             /** SECCION VER AUTORES.*/
+
+
+.header-ver-editoriales{
+    padding: 1rem 0 3rem 0;    
+    background-image: url(/img/ver-editoriales.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 70vh;
+    min-height: 10rem;
+    opacity: 0.7;
+}
+                         /** SECCION AGREGAR AUTORES.*/
+
+
+.header-editorial-add{
+    padding: 1rem 0 3rem 0;    
+    background-image: url(/img/agregar-editorial1.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 70vh;
+    min-height: 10rem;
+    opacity: 0.7;
+}   

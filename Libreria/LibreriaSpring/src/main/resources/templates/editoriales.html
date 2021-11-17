@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Seccion Libros</title>
+</head>
+<body>
+
+    <header class="header-editorial">
+
+      <div class=" contenedor contenido-header">
+
+        <div class="barra">
+
+          <a href="/">
+            <img src="/img/logo.png" alt="Logo Libreria" style="width: 10rem;">
+          </a>
+          
+          <nav class="navegacion">
+            <a th:href="@{/libro/menu}">Libros</a>
+            <a href="/autor/menu">Autores</a>
+            <a href="/editorial/menu">Editoriales</a>
+          </nav>
+
+        </div>
+
+        <h1>Seccion Editoriales</h1>
+
+      </div>
+
+    </header>
+
+    <main>
+      <div class="contenedor seccion-libro">
+        <div class="agregar-editorial">
+                      
+          <a href="/editorial/menu/add-editorial">Agregar una Editorial</a>
+          
+        </div>
+      
+        <div class="ver-editoriales">
+          <a href="/editorial/menu/lista">Ver Editoriales</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

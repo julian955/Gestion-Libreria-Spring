@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Seccion Libros</title>
+  </head>
+  <body>
+    <header class="header-autores-add">
+      <div class="contenedor contenido-header">
+        <div class="barra">
+          <a href="/">
+            <img src="/img/logo.png" alt="Logo Libreria" style="width: 10rem" />
+          </a>
+
+          <nav class="navegacion">
+            <a th:href="@{/libro/menu}">Libros</a>
+            <a href="/autor/menu">Autores</a>
+            <a href="/editorial/menu">Editoriales</a>
+          </nav>
+        </div>
+
+        <h1>Agregar un Autor</h1>
+      </div>
+    </header>
+
+    <main>
+    <div class="contenedor seccion2">
+      <div th:if="${exito}!=null" class="exito">
+
+        <div class="check">
+          <i class="fas fa-check color-x"></i>
+        </div>
+        <div class="cuerpo-exito">            
+           <h5>El libro se guardo correctamente!!</h5>
+        </div>          
+
+      </div>
+      <div th:if="${error}!=null" class="error">
+        <div class="err-icon">
+          <i class="fas fa-times color-x"></i>
+        </div>
+        <div class="err-cuerpo">
+          <h5>Error. Faltaron Datos!</h5>
+        </div>
+
+      </div>
+
+        <form th:action="@{/autor/menu/add-autor/registro}" method="POST"  class="formulario">
+          <div class="test1">
+            <label class="label test2" for="">Nombre</label>
+
+            <input class="input" type="text" name="nombre" />
+          </div>
+
+          <div class="botones-form test1">
+            <button class="boton" type="submit">AGREGAR</button>
+            <a href="/autor/menu" class="boton volver">VOLVER </a>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

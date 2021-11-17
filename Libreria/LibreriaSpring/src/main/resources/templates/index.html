@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Libreria Mordor</title>
+  </head>
+  <body>
+
+    <header class="header">
+
+      <div class=" contenedor contenido-header">
+
+        <div class="barra">
+
+          <a href="/">
+            <img src="/img/logo.png" alt="Logo Libreria" style="width: 10rem;">
+          </a>
+          
+          <nav class="navegacion">
+            <a th:href="@{/libro/menu}">Libros</a>
+            <a href="/autor/menu">Autores</a>
+            <a href="/editorial/menu">Editoriales</a>
+          </nav>
+
+        </div>
+
+        <h1>Bienvenido al sistema de gestion de la libreria</h1>
+
+      </div>
+
+    </header>
+
+    <main>
+      <div class="contenedor seccion">
+        <div class="libros">
+                      
+          <a href="/libro/menu">Gestionar Libros</a>
+          
+        </div>
+        <div class="autores">
+          <a href="/autor/menu">Gestionar Autores</a>
+        </div>
+        <div class="editoriales">
+          <a href="/editorial/menu">Gestionar Editoriales</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
