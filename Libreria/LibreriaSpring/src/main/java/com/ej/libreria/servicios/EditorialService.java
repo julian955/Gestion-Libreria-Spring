@@ -3,6 +3,7 @@ package com.ej.libreria.servicios;
 import com.ej.libreria.entidades.Editorial;
 import com.ej.libreria.errores.ErrorServicio;
 import com.ej.libreria.repositorios.EditorialRepositorio;
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ public class EditorialService {
     @Autowired
     private EditorialRepositorio er;
 
-    
     @Transactional
     public void crearEditorial(String nombre) throws ErrorServicio {
 
@@ -29,51 +29,72 @@ public class EditorialService {
 
         er.save(editorial);
     }
-    
-    @Transactional
-    public void darBaja(String id) throws ErrorServicio {
 
-        if (id == null || id.isEmpty()) {
+    @Transactional
+    public void darBaja(Long id) throws ErrorServicio {
+
+        if (id == null) {
             throw new ErrorServicio("El id no puede estar vacio.");
         }
 
-        Optional<Editorial> respuesta = er.findById(id);
+        Editorial edt = er.buscarEditorialId(id);
 
-        if (respuesta.isPresent()) {
-            Editorial editorial = respuesta.get();
-            if (!editorial.isAlta()) {
-                throw new ErrorServicio("Esta editorial esta de baja actualmente.");
-            }
-
-            editorial.setAlta(false);
-            er.save(editorial);
-        } else {
-            throw new ErrorServicio("No se encontro la editorial buscada.");
+        if (edt == null) {
+            throw new ErrorServicio("No se encontro la editorial.");
         }
+
+        edt.setAlta(false);
+        er.save(edt);
 
     }
-    
-    @Transactional
-    public void darAlta(String id) throws ErrorServicio {
 
-        if (id == null || id.isEmpty()) {
+    @Transactional
+    public void darAlta(Long id) throws ErrorServicio {
+
+        if (id == null) {
             throw new ErrorServicio("El id no puede estar vacio.");
         }
 
-        Optional<Editorial> respuesta = er.findById(id);
+        Editorial edt = er.buscarEditorialId(id);
 
-        if (respuesta.isPresent()) {
-            Editorial editorial = respuesta.get();
-            if (editorial.isAlta()) {
-                throw new ErrorServicio("Esta editorial esta de alta actualmente.");
-            }
-
-            editorial.setAlta(true);
-            er.save(editorial);
-        } else {
-            throw new ErrorServicio("No se encontro la editorial buscada.");
+        if (edt == null) {
+            throw new ErrorServicio("No se encontro la editorial.");
         }
 
+        edt.setAlta(true);
+        er.save(edt);
+    }
+
+    @Transactional
+    public void editarEdt(Long id, String nombre) throws ErrorServicio {
+
+        if (id == null) {
+            throw new ErrorServicio("El id no puede estar vacio.");
+        }
+
+        if (nombre == null || nombre.isEmpty()) {
+            throw new ErrorServicio("El nombre no puede estar vacio");
+        }
+
+        Editorial edt = er.buscarEditorialId(id);
+
+        if (edt == null) {
+            throw new ErrorServicio("No se encontro la editorial.");
+        }
+
+        edt.setNombre(nombre);
+        er.save(edt);
+    }
+    
+    
+    @Transactional
+    public List<Editorial> listarEditoriales (){
+        return er.verEditoriales();
+    }
+    
+     @Transactional
+    public Editorial traerEditorial (Long id){
+        return er.buscarEditorialId(id);
     }
 
 }

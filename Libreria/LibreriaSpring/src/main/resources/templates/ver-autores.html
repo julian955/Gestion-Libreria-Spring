@@ -47,38 +47,20 @@
                     <td>Opciones</td>
                  </tr>
               </thead>
-              <tbody>
+              <tbody th:each = "autor : ${autores}">
                 <tr>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
+                    <td th:text ="${autor.id}"></td>
+                    <td th:text ="${autor.nombre}"></td>
                     <td>
-                      <a href=""><i class="fas fa-arrow-up"></i></a>
-                      <a href=""><i class="fas fa-ban"></i></a>
-                      <a href=""><i class="far fa-edit"></i></a>
+                      <i th:if="${autor.alta}" class="fas fa-check-circle" style="color: rgb(2, 202, 2);"></i>
+                      <i th:unless="${autor.alta}" class="fas fa-times-circle" style="color: red;"></i>
+                    </td>
+                    <td>
+                      <a th:href="@{/autor/alta/__${autor.id}__}"><i class="fas fa-arrow-up"></i></a>
+                      <a th:href="@{/autor/baja/__${autor.id}__}"><i class="fas fa-ban"></i></a>
+                      <a th:href="@{/autor/modificar/__${autor.id}__}"><i class="far fa-edit"></i></a>
                     </td>                   
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                   
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                   
-                </tr>
-                <tr>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                    <td>a</td>
-                  
-                </tr>
+                </tr>               
                 
               </tbody>
 

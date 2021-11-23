@@ -31,7 +31,7 @@ public class LibroService {
 
     @Autowired
     private FotoService fs;
-    
+
     @Transactional
     public void crearLibro(MultipartFile archivo, Long isbn, String titulo, Integer ano, Integer ejemplares, String nombreAutor, String nombreEditorial) throws ErrorServicio, IOException {
 
@@ -47,7 +47,7 @@ public class LibroService {
             throw new ErrorServicio("La editorial no puede estar vacia");
         }
 
-        if (isbn == null || isbn.longValue()==0L) {
+        if (isbn == null || isbn.longValue() == 0L) {
             throw new ErrorServicio("El ISBN no puede estar vacia");
         }
         if (ano == null || ano.intValue() == 0) {
@@ -85,9 +85,123 @@ public class LibroService {
 
         lr.save(libro);
     }
-    
+
+//    @Transactional
+//    public void editarLibro(MultipartFile archivo, String isbn, String titulo, Integer ano, Integer ejemplares, String nombreAutor, String nombreEditorial) throws ErrorServicio, IOException {
+//
+//        if (isbn == null) {
+//            throw new ErrorServicio("El isbn no puede estar vacio");
+//        }
+//
+//        if (titulo == null) {
+//            throw new ErrorServicio("El titulo no puede estar vacio");
+//        }
+//
+//         if (ano == null || ano.intValue() == 0) {
+//            throw new ErrorServicio("El año no puede estar vacio");
+//        }
+//
+//        if (ejemplares == null) {
+//            throw new ErrorServicio("Los ejemplares no pueden estar vacios");
+//        }
+//        
+//        Editorial editorial = er.buscarEditorial(nombreEditorial);
+//        Autor autor = ar.buscarAutor(nombreAutor);
+//        Foto foto = fs.guardar(archivo);
+//
+//        if (editorial == null) {
+//            throw new ErrorServicio("No se encontro la editorial buscada.");
+//        }
+//
+//        if (autor == null) {
+//            throw new ErrorServicio("No se encontro el autor buscado.");
+//        }
+//
+//        Optional<Libro> respuesta = lr.findById(isbn);
+//
+//        if (respuesta.isPresent()) {
+//            Libro libro = respuesta.get();
+//            libro.setAno(ano);
+//            libro.setTitulo(titulo);
+//            libro.setEjemplares(ejemplares);
+//            int num = ejemplares - libro.getPrestados();
+//            libro.setDisponibles(num);
+//            libro.setAutor(autor);
+//            libro.setEditorial(editorial);
+//            libro.setFoto(foto);
+//
+//            lr.save(libro);
+//        } else {
+//            throw new ErrorServicio("No se encontro el libro buscado.");
+//        }
+//
+//    }
+//    @Transactional
+//    public void darBaja(String isbn) throws ErrorServicio {
+//        if (isbn == null) {
+//            throw new ErrorServicio("El isbn no puede estar vacio");
+//        }
+//
+//        Optional<Libro> respuesta = lr.findById(isbn);
+//
+//        if (respuesta.isPresent()) {
+//            Libro libro = respuesta.get();
+//            if (!libro.isAlta()) {
+//                throw new ErrorServicio("El libro esta de baja actualmente.");
+//            }
+//            libro.setAlta(false);
+//            lr.save(libro);
+//        } else {
+//            throw new ErrorServicio("No se encontro el libro buscado.");
+//        }
+//    }
+
     @Transactional
-    public void editarLibro(MultipartFile archivo, String isbn, String titulo, Integer ano, Integer ejemplares, String nombreAutor, String nombreEditorial) throws ErrorServicio, IOException {
+    public void Baja(Long id) {
+        Libro libro = lr.buscarLibroId(id);
+        libro.setAlta(false);
+        lr.save(libro);
+    }
+
+    @Transactional
+    public void Alta(Long id) {
+        Libro libro = lr.buscarLibroId(id);
+        libro.setAlta(true);
+        lr.save(libro);
+    }
+//
+//    @Transactional
+//    public void darAlta(String isbn) throws ErrorServicio {
+//        if (isbn == null) {
+//            throw new ErrorServicio("El isbn no puede estar vacio");
+//        }
+//
+//        Optional<Libro> respuesta = lr.findById(isbn);
+//
+//        if (respuesta.isPresent()) {
+//            Libro libro = respuesta.get();
+//            if (libro.isAlta()) {
+//                throw new ErrorServicio("El libro esta de alta actualmente.");
+//            }
+//            libro.setAlta(true);
+//            lr.save(libro);
+//        } else {
+//            throw new ErrorServicio("No se encontro el libro buscado.");
+//        }
+//    }
+
+    @Transactional
+    public List<Libro> listarLibros() {
+        return lr.verLibros();
+    }
+
+    @Transactional
+    public Libro traerLibro(Long id) {
+        return lr.buscarLibroId(id);
+    }
+
+    @Transactional
+    public void editarLibro(MultipartFile archivo, Long isbn, String titulo, Integer ano, Integer ejemplares, String nombreAutor, String nombreEditorial) throws ErrorServicio, IOException {
 
         if (isbn == null) {
             throw new ErrorServicio("El isbn no puede estar vacio");
@@ -97,14 +211,14 @@ public class LibroService {
             throw new ErrorServicio("El titulo no puede estar vacio");
         }
 
-         if (ano == null || ano.intValue() == 0) {
+        if (ano == null || ano.intValue() == 0) {
             throw new ErrorServicio("El año no puede estar vacio");
         }
 
         if (ejemplares == null) {
             throw new ErrorServicio("Los ejemplares no pueden estar vacios");
         }
-        
+
         Editorial editorial = er.buscarEditorial(nombreEditorial);
         Autor autor = ar.buscarAutor(nombreAutor);
         Foto foto = fs.guardar(archivo);
@@ -117,74 +231,21 @@ public class LibroService {
             throw new ErrorServicio("No se encontro el autor buscado.");
         }
 
-        Optional<Libro> respuesta = lr.findById(isbn);
-
-        if (respuesta.isPresent()) {
-            Libro libro = respuesta.get();
-            libro.setAno(ano);
-            libro.setTitulo(titulo);
-            libro.setEjemplares(ejemplares);
-            int num = ejemplares - libro.getPrestados();
-            libro.setDisponibles(num);
-            libro.setAutor(autor);
-            libro.setEditorial(editorial);
-            libro.setFoto(foto);
-
-            lr.save(libro);
-        } else {
+        Libro libro = lr.buscarLibroId(isbn);
+        if (libro == null) {
             throw new ErrorServicio("No se encontro el libro buscado.");
         }
+        libro.setAno(ano);
+        libro.setTitulo(titulo);
+        libro.setEjemplares(ejemplares);
+        int num = ejemplares - libro.getPrestados();
+        libro.setDisponibles(num);
+        libro.setAutor(autor);
+        libro.setEditorial(editorial);
+        libro.setFoto(foto);
 
-    }
-    
-    @Transactional
-    public void darBaja(String isbn) throws ErrorServicio {
-        if (isbn == null) {
-            throw new ErrorServicio("El isbn no puede estar vacio");
-        }
+        lr.save(libro);
 
-        Optional<Libro> respuesta = lr.findById(isbn);
-
-        if (respuesta.isPresent()) {
-            Libro libro = respuesta.get();
-            if (!libro.isAlta()) {
-                throw new ErrorServicio("El libro esta de baja actualmente.");
-            }
-            libro.setAlta(false);
-            lr.save(libro);
-        } else {
-            throw new ErrorServicio("No se encontro el libro buscado.");
-        }
-    }
-    
-    @Transactional
-    public void darAlta(String isbn) throws ErrorServicio {
-        if (isbn == null) {
-            throw new ErrorServicio("El isbn no puede estar vacio");
-        }
-
-        Optional<Libro> respuesta = lr.findById(isbn);
-
-        if (respuesta.isPresent()) {
-            Libro libro = respuesta.get();
-            if (libro.isAlta()) {
-                throw new ErrorServicio("El libro esta de alta actualmente.");
-            }
-            libro.setAlta(true);
-            lr.save(libro);
-        } else {
-            throw new ErrorServicio("No se encontro el libro buscado.");
-        }
-    }
-    
-    @Transactional
-    public List<Libro> listarLibros(){
-       return lr.verLibros();
-    }
-    
-    @Transactional
-    public Libro traerLibro(Long id){
-       return lr.buscarLibroId(id);
     }
 
 }

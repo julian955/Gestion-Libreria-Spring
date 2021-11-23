@@ -11,24 +11,24 @@ import org.hibernate.annotations.GenericGenerator;
 public class Editorial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)    
-    private int id;
+    private Long id;
     private String nombre;
     private boolean alta;
 
     public Editorial() {
     }
 
-    public Editorial(int id, String nombre, boolean alta) {
+    public Editorial(Long id, String nombre, boolean alta) {
         this.id = id;
         this.nombre = nombre;
         this.alta = alta;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

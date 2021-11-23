@@ -67,9 +67,9 @@
                       <i th:unless="${libro.alta}" class="fas fa-times-circle" style="color: red;"></i>
                     </td>                     
                     <td>
-                      <a ><i class="fas fa-arrow-up"></i></a>
-                      <a ><i class="fas fa-ban"></i></a>
-                      <a th:href="${/libro/menu/lista-libro/modificar/__${libro.isbn}__}"><i class="far fa-edit"></i></a>
+                      <a th:href="@{/libro/alta/__${libro.isbn}__}"><i class="fas fa-arrow-up"></i></a>
+                      <a th:href="@{/libro/baja/__${libro.isbn}__}"><i class="fas fa-ban"></i></a>
+                      <a th:href="@{/libro/modificar/__${libro.isbn}__}"><i class="far fa-edit"></i></a>
                     </td>
                 </tr>               
               </tbody>

@@ -3,6 +3,7 @@ package com.ej.libreria.servicios;
 import com.ej.libreria.entidades.Autor;
 import com.ej.libreria.errores.ErrorServicio;
 import com.ej.libreria.repositorios.AutorRepositorio;
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ public class AutorService {
     @Autowired
     private AutorRepositorio ar;
 
-    
     @Transactional
     public void agregarAutor(String nombre) throws ErrorServicio {
 
@@ -27,48 +27,68 @@ public class AutorService {
 
         ar.save(autor);
     }
-    
+
     @Transactional
-    public void darBaja(String id) throws ErrorServicio {
-        if (id == null || id.isEmpty()) {
+    public void darBaja(Integer id) throws ErrorServicio {
+        if (id == null) {
             throw new ErrorServicio("El id no puede estar vacio.");
         }
 
-        Optional<Autor> respuesta = ar.findById(id);
+        Autor aut = ar.buscarAutorId(id);
 
-        if (respuesta.isPresent()) {
-            Autor autor = respuesta.get();
-
-            if (!autor.isAlta()) {
-                throw new ErrorServicio("El actor esta de baja actualmente.");
-            }
-
-            autor.setAlta(false);
-            ar.save(autor);
-        } else {
-            throw new ErrorServicio("No se encontro el autor buscado.");
+        if (aut == null) {
+            throw new ErrorServicio("No se encontro al autor");
         }
+
+        aut.setAlta(false);
+        ar.save(aut);
     }
-    
+
     @Transactional
-    public void darAlta(String id) throws ErrorServicio {
-        if (id == null || id.isEmpty()) {
+    public void darAlta(Integer id) throws ErrorServicio {
+        if (id == null) {
             throw new ErrorServicio("El id no puede estar vacio.");
         }
 
-        Optional<Autor> respuesta = ar.findById(id);
+        Autor aut = ar.buscarAutorId(id);
 
-        if (respuesta.isPresent()) {
-            Autor autor = respuesta.get();
-
-            if (autor.isAlta()) {
-                throw new ErrorServicio("El actor esta de alta actualmente.");
-            }
-
-            autor.setAlta(true);
-            ar.save(autor);
-        } else {
-            throw new ErrorServicio("No se encontro el autor buscado.");
+        if (aut == null) {
+            throw new ErrorServicio("No se encontro al autor");
         }
+
+        aut.setAlta(true);
+        ar.save(aut);
+
     }
+
+    @Transactional
+    public void editarAut(Integer id, String nombre) throws ErrorServicio {
+        if (id == null) {
+            throw new ErrorServicio("El id no puede estar vacio.");
+        }
+        if (nombre == null || nombre.isEmpty()) {
+            throw new ErrorServicio("El nombre no puede estar vacio");
+        }
+
+        Autor aut = ar.buscarAutorId(id);
+
+        if (aut == null) {
+            throw new ErrorServicio("No se encontro al autor");
+        }
+
+        aut.setNombre(nombre);
+        ar.save(aut);
+
+    }
+    
+    @Transactional
+    public List<Autor> listarAutores(){
+        return ar.verAutores();
+    }
+    
+    @Transactional
+    public Autor traerAutor(Integer id){
+        return ar.buscarAutorId(id);
+    }
+
 }
