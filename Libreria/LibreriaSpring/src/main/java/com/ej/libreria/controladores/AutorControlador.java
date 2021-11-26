@@ -60,10 +60,10 @@ public class AutorControlador {
     @PostMapping("/modificar/{id}")
     public String modificar(ModelMap modelo, @PathVariable Integer id, @RequestParam String titulo) throws ErrorServicio, IOException {
         try {
-            as.editarAut(id, titulo);
-            modelo.put("exito", "Registro Exitoso");
+            as.editarAut(id, titulo);           
             return "redirect:/autor/menu/lista";
         } catch (Exception e) {
+            modelo.put("autor", as.traerAutor(id));
             modelo.put("error", "Fallo el registro");
             return "modificar-autor";
         }

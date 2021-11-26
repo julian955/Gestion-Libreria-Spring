@@ -81,7 +81,9 @@
           <div class="test1">
             <label class="label" for="">Autor</label>
 
-            <input th:value = "${libro.autor.getNombre}" class="input" type="text" name="nombreAutor" />
+            <select class="input" name="nombreAutor" id="">              
+              <option th:each = "autor : ${autores}"  th:value="${autor.nombre}" th:text="${autor.nombre}"/>
+            </select>
           </div>
 
           <div class="test1">

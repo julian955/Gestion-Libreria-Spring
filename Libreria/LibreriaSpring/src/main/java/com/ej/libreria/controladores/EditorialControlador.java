@@ -60,10 +60,10 @@ public class EditorialControlador {
     @PostMapping("/modificar/{id}")
     public String modificar(ModelMap modelo, @PathVariable Long id,@RequestParam String titulo) throws ErrorServicio, IOException {
         try {
-            es.editarEdt(id, titulo);
-            modelo.put("exito", "Registro Exitoso");
+            es.editarEdt(id, titulo);            
             return "redirect:/editorial/menu/lista";
         } catch (Exception e) {
+            modelo.put("editorial", es.traerEditorial(id));
             modelo.put("error", "Fallo el registro");
             return "modificar-editorial";
         }

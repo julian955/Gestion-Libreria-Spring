@@ -80,13 +80,17 @@
           <div class="test1">
             <label class="label" for="">Autor</label>
 
-            <input class="input" type="text" name="autor" />
+            <select class="input" name="autor" id="">
+              <option th:each = "autor : ${autores}" th:value="${autor.nombre}" th:text="${autor.nombre}"/>
+            </select>
           </div>
 
           <div class="test1">
             <label class="label" for="">Editorial</label>
 
-            <input class="input" type="text" name="editorial"/>
+            <select class="input" name="editorial" id="">
+              <option value=""th:each = "editorial: ${editoriales}" th:value ="${editorial.nombre}" th:text="${editorial.nombre}"/>
+            </select>
           </div>
 
           <div class="test1">
