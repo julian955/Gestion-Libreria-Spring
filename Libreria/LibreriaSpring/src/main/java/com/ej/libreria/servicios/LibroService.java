@@ -207,7 +207,7 @@ public class LibroService {
             throw new ErrorServicio("El isbn no puede estar vacio");
         }
 
-        if (titulo == null || titulo.isEmpty()) {
+        if (titulo == null  || titulo.isEmpty()) {
             throw new ErrorServicio("El titulo no puede estar vacio");
         }
 

@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comforter&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="/css/normalize.css">
@@ -80,22 +83,22 @@
           <div class="test1">
             <label class="label" for="">Autor</label>
 
-            <select class="input" name="autor" id="">
-              <option th:each = "autor : ${autores}" th:value="${autor.nombre}" th:text="${autor.nombre}"/>
-            </select>
+            <select class="input" name="autor" >
+              <option th:each = "autor : ${autores}" th:value ="${autor.nombre}" th:text = "${autor.nombre}" />
+          </select>
           </div>
 
           <div class="test1">
             <label class="label" for="">Editorial</label>
 
-            <select class="input" name="editorial" id="">
-              <option value=""th:each = "editorial: ${editoriales}" th:value ="${editorial.nombre}" th:text="${editorial.nombre}"/>
-            </select>
+            <select class="input" name="editorial">
+              <option th:each = "editorial : ${editoriales}" th:value ="${editorial.nombre}" th:text = "${editorial.nombre}"/>
+          </select>
           </div>
 
           <div class="test1">
             <label class="label" for="">Foto</label>
-            <input  class="input" type="file" name="foto" id="">
+            <input  class="input" type="file" name="archivo" id="">
           </div>
 
           <div class="botones-form test1">

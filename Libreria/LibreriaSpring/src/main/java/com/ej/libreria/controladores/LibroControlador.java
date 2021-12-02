@@ -25,7 +25,6 @@ public class LibroControlador {
 
     @Autowired
     private LibroService ls;
-
     @Autowired
     private EditorialService es;
     @Autowired
@@ -70,6 +69,7 @@ public class LibroControlador {
         modelo.addAttribute("editoriales", editoriales);
         List<Autor> autores = as.listarAutores();
         modelo.addAttribute("autores", autores);
+
         modelo.put("libro", ls.traerLibro(id));
         return "modificar-libro";
     }
@@ -80,6 +80,10 @@ public class LibroControlador {
             ls.editarLibro(archivo, id, titulo, ano, ejemplares, nombreAutor, nombreEditorial);
             return "redirect:/libro/menu/lista-libro";
         } catch (Exception e) {
+            List<Editorial> editoriales = es.listarEditoriales();
+            modelo.addAttribute("editoriales", editoriales);
+            List<Autor> autores = as.listarAutores();
+            modelo.addAttribute("autores", autores);
             modelo.put("libro", ls.traerLibro(id));
             modelo.put("error", "Fallo el registro");
             return "modificar-libro";

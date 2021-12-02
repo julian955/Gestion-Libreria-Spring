@@ -29,7 +29,7 @@
           </nav>
 
         </div>
-        <h1>Ver Libros</h1>
+        <h1 style="color: black;">Ver Libros</h1>
 
       </div>
 
@@ -61,7 +61,8 @@
                     <td th:text="${libro.ejemplares}"></td>
                     <td th:text="${libro.autor.getNombre}"></td>
                     <td th:text="${libro.editorial.getNombre}"></td>
-                    <td th:text="${libro.foto}"></td>
+                    <td th:if = "${libro.foto == null}"><a><img src="/img/sin-imagen.jpg" alt="portada" style="width: 20rem; height: 20rem;"></a></td>
+                    <td th:if = "${libro.foto != null}"><img th:src="${'/foto/libro/'+libro.isbn}" alt="portada" style="width: 20rem; height: 20rem;"></td>
                     <td>
                       <i th:if="${libro.alta}" class="fas fa-check-circle" style="color: rgb(2, 202, 2);"></i>
                       <i th:unless="${libro.alta}" class="fas fa-times-circle" style="color: red;"></i>

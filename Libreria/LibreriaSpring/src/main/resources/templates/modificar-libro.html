@@ -54,7 +54,7 @@
 
         </div>
         
-        <form th:action="@{/libro/modificar/__${libro.isbn}__}" class="formulario" method="POST">
+        <form th:action="@{/libro/modificar/__${libro.isbn}__}" class="formulario" method="POST" enctype="multipart/form-data">
           <input hidden th:value = "${isbn}" name = "isbn">
           <div class="test1">
             <label class="label" for="">ISBN</label>
@@ -81,20 +81,22 @@
           <div class="test1">
             <label class="label" for="">Autor</label>
 
-            <select class="input" name="nombreAutor" id="">              
-              <option th:each = "autor : ${autores}"  th:value="${autor.nombre}" th:text="${autor.nombre}"/>
-            </select>
+            <select class="input" name="nombreAutor" >
+              <option th:each = "autor : ${autores}" th:value ="${autor.nombre}" th:text = "${autor.nombre}" />
+          </select>
           </div>
 
           <div class="test1">
             <label class="label" for="">Editorial</label>
 
-            <input th:value = "${libro.editorial.getNombre}" class="input" type="text" name="nombreEditorial"/>
+            <select class="input" name="nombreEditorial">
+              <option th:each = "editorial : ${editoriales}" th:value ="${editorial.nombre}" th:text = "${editorial.nombre}"/>
+          </select>
           </div>
 
           <div class="test1">
             <label class="label" for="">Foto</label>
-            <input th:value = "${libro.foto}"  class="input" type="file" name="foto" id="">
+            <input th:value = "${libro.foto}"  class="input" type="file" name="archivo" id="">
           </div>
 
           <div class="botones-form test1">
